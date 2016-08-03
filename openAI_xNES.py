@@ -48,7 +48,6 @@ for sim in range(maxSim):
                     observation, reward, done, info = env.step(action)
                     r_total[i] += reward
                     if done:
-                        # print("Episode finished after {} timesteps".format(t+1))
                         break
             if r_total[i] >= T * M:
                 print("SUCCESS theta = \n{} ".format(theta_new))
@@ -58,7 +57,6 @@ for sim in range(maxSim):
             break
         sort_ind = np.argsort(r_total)
         z_sort = (np.transpose(np.transpose(z)[sort_ind]))[:, ::-1]
-        # thetas_sort = (np.transpose(np.transpose(thetas)[sort_ind]))[:, ::-1]
         G_m_xNES = sigma_xNES * B_xNES.dot(np.transpose(np.asmatrix(np.sum(w_i_xNES * z_sort, 1))))
         G_M_xNES = np.zeros((dim, dim))
         for i in range(lambda_xNES):
